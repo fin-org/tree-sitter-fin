@@ -1,0 +1,12 @@
+{
+  "name": "tree-sitter-fin",
+  "version": "0.1.0",
+  "description": "",
+  "main": "bindings/node",
+  "keywords": [],
+  "author": "Michael McClintock",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.18.0"
+  }
+}
