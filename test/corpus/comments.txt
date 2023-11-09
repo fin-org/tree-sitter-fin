@@ -1,0 +1,41 @@
+===
+single
+===
+
+# hello world
+
+---
+
+(source_file (comment))
+
+===
+trailing string
+===
+
+"hello" # world
+
+---
+
+(source_file (string) (comment))
+
+===
+multiple
+===
+
+#hello
+#world
+"hello"  # hello # blah
+"world"
+
+
+# world
+
+---
+
+(source_file 
+	(comment)
+	(comment)
+	(string)
+	(comment)
+	(string)
+	(comment))
