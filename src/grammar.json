@@ -30,6 +30,10 @@
         {
           "type": "SYMBOL",
           "name": "block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
         }
       ]
     },
@@ -48,6 +52,10 @@
           }
         ]
       }
+    },
+    "symbol": {
+      "type": "PATTERN",
+      "value": "[a-z_:][a-z_:\\d]*"
     },
     "map": {
       "type": "SEQ",
@@ -137,76 +145,79 @@
       ]
     },
     "string": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\""
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "IMMEDIATE_TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[^\"\\n\\\\]+"
-                  }
-                }
-              },
-              {
-                "type": "IMMEDIATE_TOKEN",
-                "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "\\"
-                    },
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "PATTERN",
-                          "value": "[^xuU]"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "\\d{2,3}"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "x[0-9a-fA-F]{2}"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "u[0-9a-fA-F]{4}"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "U[0-9a-fA-F]{8}"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
             "type": "STRING",
             "value": "\""
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "PREC",
+                    "value": 1,
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[^\"\\n\\\\]+"
+                    }
+                  }
+                },
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "\\"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "PATTERN",
+                            "value": "[^xuU]"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "\\d{2,3}"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "x[0-9a-fA-F]{2}"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "u[0-9a-fA-F]{4}"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "U[0-9a-fA-F]{8}"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "\""
+            }
           }
-        }
-      ]
+        ]
+      }
     },
     "comment": {
       "type": "TOKEN",

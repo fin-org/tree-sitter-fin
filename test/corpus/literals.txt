@@ -19,3 +19,14 @@ false  # false
 ---
 
 (source_file (boolean) (comment) (boolean) (comment))
+
+===
+symbols
+===
+
+:ab_1 _cd 
+e1:f2 :g:h
+
+---
+
+(source_file (symbol) (symbol) (symbol) (symbol))

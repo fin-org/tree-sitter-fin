@@ -26,6 +26,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
         }
       ]
     }
@@ -56,6 +60,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
           "named": true
         }
       ]
@@ -88,6 +96,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
         }
       ]
     }
@@ -119,18 +131,13 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
         }
       ]
     }
-  },
-  {
-    "type": "string",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "\"",
-    "named": false
   },
   {
     "type": "(",
@@ -158,6 +165,14 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "string",
+    "named": true
+  },
+  {
+    "type": "symbol",
     "named": true
   },
   {

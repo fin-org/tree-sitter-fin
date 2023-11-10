@@ -6,12 +6,14 @@ module.exports = grammar({
   rules: {
     source_file: ($) => repeat($.value),
 
-    value: ($) => choice($.boolean, $.string, $.map, $.array, $.block),
+    value: ($) =>
+      choice($.boolean, $.string, $.map, $.array, $.block, $.symbol),
 
     boolean: (_) => token(choice("false", "true")),
 
+    symbol: ($) => /[a-z_:][a-z_:\d]*/,
+
     // TODO numbers
-    // TODO symbols
     // TODO calls
 
     // collections
@@ -21,26 +23,28 @@ module.exports = grammar({
 
     // go interpreted string literal
     string: ($) =>
-      seq(
-        '"',
-        repeat(
-          choice(
-            token.immediate(prec(1, /[^"\n\\]+/)),
-            token.immediate(
-              seq(
-                "\\",
-                choice(
-                  /[^xuU]/,
-                  /\d{2,3}/,
-                  /x[0-9a-fA-F]{2}/,
-                  /u[0-9a-fA-F]{4}/,
-                  /U[0-9a-fA-F]{8}/,
+      token(
+        seq(
+          '"',
+          repeat(
+            choice(
+              token.immediate(prec(1, /[^"\n\\]+/)),
+              token.immediate(
+                seq(
+                  "\\",
+                  choice(
+                    /[^xuU]/,
+                    /\d{2,3}/,
+                    /x[0-9a-fA-F]{2}/,
+                    /u[0-9a-fA-F]{4}/,
+                    /U[0-9a-fA-F]{8}/,
+                  ),
                 ),
               ),
             ),
           ),
+          token.immediate('"'),
         ),
-        token.immediate('"'),
       ),
 
     comment: (_) => token(seq("#", /.*/)),
