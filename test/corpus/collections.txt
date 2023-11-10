@@ -1,0 +1,51 @@
+===
+maps
+===
+
+((), (
+	#
+))
+
+---
+
+(source_file (map (map) (map (comment))))
+
+===
+arrays
+===
+
+[,
+	[],[,  ], [ #	
+		,
+	]
+],
+[]
+
+---
+
+(source_file (array (array) (array) (array (comment))) (array))
+
+===
+blocks
+===
+
+{{{}, { #
+}}}    {}
+
+---
+
+(source_file (block (block (block) (block (comment)))) (block))
+
+===
+mix
+===
+
+([], { # hello
+	[ # world
+		,,,
+	],
+})
+
+---
+
+(source_file (map (array) (block (comment) (array (comment)))))

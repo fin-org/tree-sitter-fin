@@ -9,3 +9,5 @@ target
 *.dylib
 *.so
 *.o
+
+test.fin

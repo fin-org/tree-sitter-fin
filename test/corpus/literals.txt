@@ -1,0 +1,21 @@
+===
+strings
+===
+
+"hello"
+"\"world\""
+
+---
+
+(source_file (string) (string))
+
+===
+booleans
+===
+
+true  # true
+false  # false
+
+---
+
+(source_file (boolean) (comment) (boolean) (comment))
