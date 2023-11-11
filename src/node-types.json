@@ -20,6 +20,14 @@
           "named": true
         },
         {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "map",
           "named": true
         },
@@ -55,11 +63,46 @@
           "named": true
         },
         {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "map",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "map",
           "named": true
         },
         {
@@ -87,6 +130,14 @@
         },
         {
           "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -122,6 +173,14 @@
         },
         {
           "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {

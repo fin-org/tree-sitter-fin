@@ -1,28 +1,21 @@
 module.exports = grammar({
   name: "fin",
-  extras: ($) => [$.comment, /\s/, ","],
-  inline: ($) => [$.value],
+  extras: (_) => [],
+  inline: ($) => [$.sep, $.value, $.entry],
 
   rules: {
-    source_file: ($) => repeat($.value),
-
+    source_file: ($) => repeat(choice($.sep, $.value)),
+    comment: (_) => token(seq("#", /.*/)),
+    sep: ($) => choice(",", /\s/, $.comment),
     value: ($) =>
-      choice($.boolean, $.string, $.map, $.array, $.block, $.symbol),
-
+      choice($.boolean, $.string, $.symbol, $.map, $.array, $.block, $.call),
     boolean: (_) => token(choice("false", "true")),
-
-    symbol: ($) => /[a-z_:][a-z_:\d]*/,
+    symbol: (_) => /[a-z_:][a-z_:\d]*/,
 
     // TODO numbers
-    // TODO calls
-
-    // collections
-    map: ($) => seq("(", repeat(choice($.value, ",")), ")"),
-    array: ($) => seq("[", repeat(choice($.value, ",")), "]"),
-    block: ($) => seq("{", repeat(choice($.value, ",")), "}"),
 
     // go interpreted string literal
-    string: ($) =>
+    string: (_) =>
       token(
         seq(
           '"',
@@ -47,6 +40,12 @@ module.exports = grammar({
         ),
       ),
 
-    comment: (_) => token(seq("#", /.*/)),
+    // collections
+    entry: ($) => seq($.value, repeat($.sep)),
+    map: ($) => seq("(", repeat($.sep), repeat($.entry), ")"),
+    array: ($) => seq("[", repeat($.sep), repeat($.entry), "]"),
+    block: ($) => seq("{", repeat($.sep), repeat($.entry), "}"),
+
+    call: ($) => prec(2, seq($.symbol, choice($.map, $.array, $.block))),
   },
 });

@@ -1,7 +1,8 @@
+(call (symbol) @function) 
 (comment) @comment
 (string) @string
 (boolean) @constant.builtin.boolean
-(symbol) @keyword
+(symbol) @variable
 
 [ "," ] @punctuation.delimiter
 [ "(" ")" "[" "]" "{" "}"] @punctuation.bracket

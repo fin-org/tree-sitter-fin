@@ -1,0 +1,56 @@
+===
+array arg
+===
+
+or[true, false] or [true, false]
+
+or[ #
+	true ,  false
+]
+
+---
+
+(source_file
+	(call
+		(symbol)
+		(array (boolean) (boolean)))
+	(symbol)
+	(array (boolean) (boolean))
+	(call
+		(symbol)
+		(array (comment) (boolean) (boolean))))
+
+===
+block arg
+===
+
+do{"a", "b"}
+
+---
+
+(source_file
+	(call
+		(symbol)
+		(block (string) (string))))
+
+===
+map arg
+===
+
+abc(def true)
+
+ghi( #
+	jkl false, 
+)true
+
+---
+
+(source_file
+	(call
+		(symbol)
+		(map (symbol) (boolean)))
+	(call
+		(symbol)
+		(map (comment) (symbol) (boolean)))
+	(boolean))
+
