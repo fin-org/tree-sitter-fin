@@ -30,3 +30,18 @@ e1:f2 :g:h
 ---
 
 (source_file (symbol) (symbol) (symbol) (symbol))
+
+===
+numbers
+===
+
+123
+1.23
+0x0101
+
+---
+
+(source_file
+	(number)
+	(number)
+	(number))

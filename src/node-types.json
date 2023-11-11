@@ -32,6 +32,10 @@
           "named": true
         },
         {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -72,6 +76,10 @@
         },
         {
           "type": "map",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -145,6 +153,10 @@
           "named": true
         },
         {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -188,6 +200,10 @@
           "named": true
         },
         {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -224,6 +240,10 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "number",
     "named": true
   },
   {
