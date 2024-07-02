@@ -70,7 +70,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (eof) ADVANCE(5);
       if (lookahead == 'h') ADVANCE(1);
       if (('\t' <= lookahead && lookahead <= '\r') ||
-          lookahead == ' ') SKIP(0)
+          lookahead == ' ') SKIP(0);
       END_STATE();
     case 1:
       if (lookahead == 'e') ADVANCE(3);
@@ -131,7 +131,7 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [5] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1),
+  [5] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1, 0, 0),
   [7] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
 };
 
@@ -146,7 +146,7 @@ extern "C" {
 #define TS_PUBLIC __attribute__((visibility("default")))
 #endif
 
-TS_PUBLIC const TSLanguage *tree_sitter_fin() {
+TS_PUBLIC const TSLanguage *tree_sitter_fin(void) {
   static const TSLanguage language = {
     .version = LANGUAGE_VERSION,
     .symbol_count = SYMBOL_COUNT,

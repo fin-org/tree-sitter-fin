@@ -3,7 +3,6 @@ import PackageDescription
 
 let package = Package(
     name: "TreeSitterFin",
-    platforms: [.macOS(.v10_13), .iOS(.v11)],
     products: [
         .library(name: "TreeSitterFin", targets: ["TreeSitterFin"]),
     ],
