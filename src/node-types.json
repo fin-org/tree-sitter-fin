@@ -1,11 +1,180 @@
 [
   {
-    "type": "source_file",
+    "type": "arr",
     "named": true,
-    "fields": {}
+    "fields": {
+      "tag": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "sym",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "arr",
+          "named": true
+        },
+        {
+          "type": "com",
+          "named": true
+        },
+        {
+          "type": "esc",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "raw",
+          "named": true
+        },
+        {
+          "type": "sym",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "hello",
+    "type": "kv",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arr",
+          "named": true
+        },
+        {
+          "type": "esc",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "raw",
+          "named": true
+        },
+        {
+          "type": "sym",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "map",
+    "named": true,
+    "fields": {
+      "tag": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "sym",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "com",
+          "named": true
+        },
+        {
+          "type": "kv",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "root",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "com",
+          "named": true
+        },
+        {
+          "type": "kv",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
     "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "com",
+    "named": true
+  },
+  {
+    "type": "esc",
+    "named": true
+  },
+  {
+    "type": "num",
+    "named": true
+  },
+  {
+    "type": "raw",
+    "named": true
+  },
+  {
+    "type": "sym",
+    "named": true
   }
 ]

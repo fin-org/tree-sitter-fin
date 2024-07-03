@@ -1,20 +1,221 @@
 {
   "name": "fin",
   "rules": {
-    "source_file": {
+    "root": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "com"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "kv"
+          }
+        ]
+      }
+    },
+    "sym": {
+      "type": "PATTERN",
+      "value": "[a-z:_][a-z:_\\d]*"
+    },
+    "num": {
+      "type": "PATTERN",
+      "value": "-?(0|[1-9]\\d*)(\\.\\d+)?(e-?(0|[1-9]\\d*))?"
+    },
+    "esc": {
       "type": "STRING",
-      "value": "hello"
+      "value": "ESC_TODO"
+    },
+    "raw": {
+      "type": "STRING",
+      "value": "RAW_TODO"
+    },
+    "com": {
+      "type": "STRING",
+      "value": "COM_TODO"
+    },
+    "arr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "tag",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "sym"
+                  }
+                },
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "["
+                  }
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "["
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "com"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "val"
+              },
+              {
+                "type": "STRING",
+                "value": ","
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "map": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "tag",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "sym"
+                  }
+                },
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "("
+                  }
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "("
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "com"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "kv"
+              },
+              {
+                "type": "STRING",
+                "value": ","
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "kv": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "val"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "val"
+        }
+      ]
+    },
+    "val": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "sym"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "num"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "esc"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "raw"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "map"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "arr"
+            }
+          ]
+        }
+      ]
     }
   },
   "extras": [
     {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "[ \\t\\r\\n,]"
     }
   ],
   "conflicts": [],
   "precedences": [],
   "externals": [],
-  "inline": [],
+  "inline": [
+    "val"
+  ],
   "supertypes": []
 }
