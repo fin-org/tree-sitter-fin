@@ -1,14 +1,14 @@
 (ERROR) @error
-
-(sym) @variable @attribute
 (com) @comment
-(esc) @string @string.quoted.double
-(raw) @string @string.raw
+(sym) @variable
 (num) @number @constant.numeric
-
+(esc) @string @string.quoted.double
+(esc_seq) @escape @constant.character.escape
+(raw) @string @string.raw
 ["," "="] @punctuation.delimiter
 ["(" ")" "[" "]"] @punctuation.bracket
 
-;; extensions
-((sym) @keyword
-  (#match? @keyword "(^true$|^false$|^fin:)"))
+;; TODO
+;; colons within symbols should highlight as @punctuation.delimiter
+;; symbols that tag collections could highlight different?
+;; symbols that are extensions could highlight different?

@@ -19,23 +19,52 @@
     },
     "sym": {
       "type": "PATTERN",
-      "value": "[a-z:_][a-z:_\\d]*"
+      "value": "(:[a-z_][a-z_\\d]*)+|[a-z_][a-z_\\d]*(:[a-z_][a-z_\\d]*)*"
     },
     "num": {
       "type": "PATTERN",
       "value": "-?(0|[1-9]\\d*)(\\.\\d+)?(e-?(0|[1-9]\\d*))?"
     },
     "esc": {
-      "type": "STRING",
-      "value": "ESC_TODO"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "esc_seq"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^\\\\\"]"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\""
+        }
+      ]
+    },
+    "esc_seq": {
+      "type": "PATTERN",
+      "value": "\\\\(\\\\|\\\"|n|r|t|u\\{[0-9a-f]+\\})"
     },
     "raw": {
-      "type": "STRING",
-      "value": "RAW_TODO"
+      "type": "PATTERN",
+      "value": "(\\|.*\\n[ \\t]*)+"
     },
     "com": {
-      "type": "STRING",
-      "value": "COM_TODO"
+      "type": "PATTERN",
+      "value": "(\\#.*\\n[ \\t]*)+"
     },
     "arr": {
       "type": "SEQ",
@@ -80,7 +109,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "val"
+                "name": "_val"
               },
               {
                 "type": "STRING",
@@ -158,7 +187,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "val"
+          "name": "_val"
         },
         {
           "type": "STRING",
@@ -166,11 +195,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "val"
+          "name": "_val"
         }
       ]
     },
-    "val": {
+    "_val": {
       "type": "SEQ",
       "members": [
         {
@@ -214,8 +243,6 @@
   "conflicts": [],
   "precedences": [],
   "externals": [],
-  "inline": [
-    "val"
-  ],
+  "inline": [],
   "supertypes": []
 }

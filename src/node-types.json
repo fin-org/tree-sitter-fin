@@ -50,6 +50,21 @@
     }
   },
   {
+    "type": "esc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "esc_seq",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "kv",
     "named": true,
     "fields": {},
@@ -134,6 +149,10 @@
     }
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -162,7 +181,7 @@
     "named": true
   },
   {
-    "type": "esc",
+    "type": "esc_seq",
     "named": true
   },
   {

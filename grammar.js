@@ -4,19 +4,18 @@
 module.exports = grammar({
 	name: "fin",
 	extras: (_) => [/[ \t\r\n,]/],
-	inline: ($) => [$.val],
-
 	rules: {
 		root: ($) => repeat(choice($.com, $.kv)),
-		sym: (_) => /[a-z:_][a-z:_\d]*/,
+		sym: (_) => /(:[a-z_][a-z_\d]*)+|[a-z_][a-z_\d]*(:[a-z_][a-z_\d]*)*/, // break apart into names and delimiter :
 		num: (_) => /-?(0|[1-9]\d*)(\.\d+)?(e-?(0|[1-9]\d*))?/,
-		esc: (_) => "ESC_TODO",
-		raw: (_) => "RAW_TODO",
-		com: (_) => "COM_TODO",
+		esc: ($) => seq('"', repeat(choice($.esc_seq, /[^\\"]/)), '"'),
+		esc_seq: (_) => /\\(\\|\"|n|r|t|u\{[0-9a-f]+\})/,
+		raw: (_) => /(\|.*\n[ \t]*)+/,
+		com: (_) => /(\#.*\n[ \t]*)+/,
 		arr: ($) =>
 			seq(
 				choice(seq(field("tag", $.sym), token.immediate("[")), "["),
-				repeat(choice($.com, $.val, ",")),
+				repeat(choice($.com, $._val, ",")),
 				"]",
 			),
 		map: ($) =>
@@ -25,7 +24,7 @@ module.exports = grammar({
 				repeat(choice($.com, $.kv, ",")),
 				")",
 			),
-		kv: ($) => seq($.val, "=", $.val),
-		val: ($) => seq(choice($.sym, $.num, $.esc, $.raw, $.map, $.arr)),
+		kv: ($) => seq($._val, "=", $._val),
+		_val: ($) => seq(choice($.sym, $.num, $.esc, $.raw, $.map, $.arr)),
 	},
 });
